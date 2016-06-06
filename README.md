@@ -1,9 +1,10 @@
 # A minimal project written in Symfony 2.8 just for educational purposes.
 
-It demonstrates Entities, Controllers, Views, Validation using annotations, CRUD generator, Form Validation, Unit & Functional testing with fixtures.
+It demonstrates Entities, Controllers, Views, Validation using annotations, CRUD generator, Form Validation, 
+Unit & Functional testing with fixtures.
 
 ## Set up
-1. `git clone git@github.com:geobas/base-symfony.git`
+1. `git clone git@github.com:geobas/minimal-symfony.git`
 2. Run `composer update`
 3. Run `app/console doctrine:database:create && app/console doctrine:schema:create && app/console doctrine:fixtures:load` from application's root folder.
 
