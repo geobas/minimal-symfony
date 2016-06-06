@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Issue list{% endblock %}
+
+{% block body %}
+    <h1>Issue list</h1>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th>Publication</th>
+                <th>Issue</th>
+                <th>Cover</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for issue in issues %}
+                <td>{{ issue.publication.name }}</td>
+                <td>#{{ issue.number }} - {% if issue.datePublication %}{{ issue.datePublication|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if issue.cover %}<img class="img-responsive"
+                    src="{{ asset(issue.getCoverWeb) }}"/>{% endif %}</td>
+                <td>
+                    <a class="btn btn-default btn-xs" href="{{ path('issue_show', { 'id': issue.id }) }}">show</a>
+                    <a class="btn btn-default btn-xs" href="{{ path('issue_edit', { 'id': issue.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-default" href="{{ path('issue_new') }}">
+        New Issue
+    </a>
+{% endblock %}
