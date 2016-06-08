@@ -13,3 +13,6 @@ Unit & Functional testing with fixtures.
 
 ## Run tests
 Execute `phpunit -c app/ src/Lynda/MagazineBundle/Tests` from application's root folder.
+
+## Generate code coverage report after unit tests have run
+Execute `phpunit -c app/ --coverage-html cov/`
