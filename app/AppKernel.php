@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Lynda\MagazineBundle\LyndaMagazineBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Custom\CMSBundle\CustomCMSBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

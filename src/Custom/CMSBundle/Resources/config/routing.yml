@@ -1,0 +1,4 @@
+custom_cms_cms_user:
+    resource: "@CustomCMSBundle/Resources/config/routing/user.yml"
+    prefix:   /cms/user
+
