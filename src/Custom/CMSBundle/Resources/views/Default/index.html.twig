@@ -1,5 +1,10 @@
 {% extends 'base2.html.twig' %}
 
 {% block body %}
-	<h3>Home Page</h3>
+	{% for page in pages %}
+		<div class="page">
+			<h1>{{ page.title }}</h1>
+			<p>{{ page.content | slice(0,25) }}...<a href="{{ path('cms_homepage') }}">read more</a></p>
+		</div>
+	{% endfor %}
 {% endblock %}

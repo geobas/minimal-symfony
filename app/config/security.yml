@@ -20,7 +20,7 @@ security:
             form_login:
                 login_path: /cms/login
                 check_path: /cms/login
-                default_target_path: /cms/user
+                default_target_path: /cms/page
             logout:
                 path: /cms/logout
                 target: /cms
@@ -29,4 +29,6 @@ security:
     access_control:
         - { path: /cms/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /cms/user, roles: ROLE_ADMIN }
+        - { path: /cms/category, roles: ROLE_ADMIN }
+        - { path: /cms/page, roles: ROLE_USER }
         - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
