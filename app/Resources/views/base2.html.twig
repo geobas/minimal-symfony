@@ -20,6 +20,17 @@
                 <p id="logo">Custom CMS</p>
                 <div id="nav">
                     <a href="{{ path('cms_homepage') }}" >Home</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        | <a href="{{ path('cms_user_index') }}">Users</a> |
+                        <a href="{{ path('cms_category_index') }}">Categories</a> |
+                        <a href="{{ path('cms_page_index') }}">Pages</a> |
+                    {% elseif is_granted('ROLE_USER') %}
+                        | <a href="{{ path('cms_page_index') }}">Pages</a> |
+                    {% endif %}
+
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+                        <a href="{{ path('logout') }}">Logout</a>
+                    {% endif %}                        
                 </div>
             </div>
             {% for flashMessage in app.session.flashbag.get('msg') %}

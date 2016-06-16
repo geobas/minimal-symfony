@@ -3,6 +3,7 @@
 namespace Custom\CMSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
@@ -18,4 +19,19 @@ class DefaultController extends Controller
         		'pages' => $pages
         	));
     }
+
+    /**
+     * Finds and displays a Page entity.
+     *
+     * @Route("page/{id}", name="cms_page_display")
+     * @Method("GET")
+     */
+    public function displayAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$page = $em->getRepository('CustomCMSBundle:Page')->find($id);
+        return $this->render('CustomCMSBundle:Default:display.html.twig', array(
+        		'page' => $page
+        	));
+    }    
 }

@@ -11,9 +11,13 @@ custom_cms_category:
     resource: "@CustomCMSBundle/Resources/config/routing/category.yml"
     prefix:   /cms/category    
 
-custom_cms_cms_page:
+custom_cms_page:
     resource: "@CustomCMSBundle/Resources/config/routing/page.yml"
-    prefix:   /cms/page    
+    prefix:   /cms/page
+
+# custom_cms_page_display:
+#     path: /page/{id}
+#     defaults: { _controller: CustomCMSBundle:Default:display }
 
 login:
     path: /cms/login

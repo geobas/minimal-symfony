@@ -23,7 +23,10 @@
 	margin-bottom: 60px;
 }
 
-table tr th, table td td {
-	text-align: left;
-	padding-right: 10px;
+table thead tr th, table tbody td td {
+	padding: 26px;
+}
+
+td, th {
+	text-align: center !important;
 }

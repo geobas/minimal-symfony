@@ -4,7 +4,9 @@
 	{% for page in pages %}
 		<div class="page">
 			<h1>{{ page.title }}</h1>
-			<p>{{ page.content | slice(0,25) }}...<a href="{{ path('cms_homepage') }}">read more</a></p>
+			<p>{{ page.content | slice(0,25) }}...
+				<a href="{{ path('cms_page_display', { id: page.id }) }}">read more</a>
+			</p>
 		</div>
 	{% endfor %}
 {% endblock %}
