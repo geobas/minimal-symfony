@@ -12,6 +12,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="_password" />
         <p></p>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token('csrf_authenticate') }}">
         <button type="submit">login</button>
     </form>
 {% endblock %}

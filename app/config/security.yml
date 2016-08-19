@@ -21,6 +21,9 @@ security:
                 login_path: /cms/login
                 check_path: /cms/login
                 default_target_path: /cms/page
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: csrf_token
+                csrf_token_id: csrf_authenticate
             logout:
                 path: /cms/logout
                 target: /cms
