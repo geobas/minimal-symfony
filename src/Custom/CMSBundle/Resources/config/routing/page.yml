@@ -9,7 +9,7 @@ cms_page_show:
     methods:  GET
 
 cms_page_new:
-    path:     /new
+    path:     /new/page
     defaults: { _controller: "CustomCMSBundle:Page:new" }
     methods:  [GET, POST]
 

@@ -24,7 +24,7 @@ class PageController extends Controller
 
         $pages = $em->getRepository('CustomCMSBundle:Page')->findAll();
 
-        return $this->render('page/index.html.twig', array(
+        return $this->render('CustomCMSBundle:Page:index.html.twig', array(
             'pages' => $pages,
         ));
     }
@@ -47,7 +47,7 @@ class PageController extends Controller
             return $this->redirectToRoute('cms_page_show', array('id' => $page->getId()));
         }
 
-        return $this->render('page/new.html.twig', array(
+        return $this->render('CustomCMSBundle:Page:new.html.twig', array(
             'page' => $page,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class PageController extends Controller
     {
         $deleteForm = $this->createDeleteForm($page);
 
-        return $this->render('page/show.html.twig', array(
+        return $this->render('CustomCMSBundle:Page:show.html.twig', array(
             'page' => $page,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class PageController extends Controller
             return $this->redirectToRoute('cms_page_edit', array('id' => $page->getId()));
         }
 
-        return $this->render('page/edit.html.twig', array(
+        return $this->render('CustomCMSBundle:Page:edit.html.twig', array(
             'page' => $page,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

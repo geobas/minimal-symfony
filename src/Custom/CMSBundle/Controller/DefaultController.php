@@ -33,5 +33,5 @@ class DefaultController extends Controller
         return $this->render('CustomCMSBundle:Default:display.html.twig', array(
         		'page' => $page
         	));
-    }    
+    }
 }
