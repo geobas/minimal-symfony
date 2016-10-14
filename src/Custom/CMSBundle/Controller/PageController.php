@@ -61,6 +61,9 @@ class PageController extends Controller
     {
         $deleteForm = $this->createDeleteForm($page);
 
+        if (!$page)
+            throw $this->createNotFoundException('Unable to find Page entity.');
+
         return $this->render('CustomCMSBundle:Page:show.html.twig', array(
             'page' => $page,
             'delete_form' => $deleteForm->createView(),
