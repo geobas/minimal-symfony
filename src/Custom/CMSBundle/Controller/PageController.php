@@ -4,6 +4,7 @@ namespace Custom\CMSBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Custom\CMSBundle\Entity\Page;
 use Custom\CMSBundle\Form\PageType;
@@ -15,6 +16,8 @@ use Custom\CMSBundle\Form\PageType;
 class PageController extends Controller
 {
     /**
+     * @Template()
+     *
      * Lists all Page entities.
      *
      */
@@ -24,9 +27,9 @@ class PageController extends Controller
 
         $pages = $em->getRepository('CustomCMSBundle:Page')->findAll();
 
-        return $this->render('CustomCMSBundle:Page:index.html.twig', array(
+        return array(
             'pages' => $pages,
-        ));
+        );
     }
 
     /**
@@ -54,6 +57,8 @@ class PageController extends Controller
     }
 
     /**
+     * @Template("CustomCMSBundle:Page:show.html.twig")
+     *
      * Finds and displays a Page entity.
      *
      */
@@ -64,10 +69,10 @@ class PageController extends Controller
         if (!$page)
             throw $this->createNotFoundException('Unable to find Page entity.');
 
-        return $this->render('CustomCMSBundle:Page:show.html.twig', array(
+        return array(
             'page' => $page,
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**
