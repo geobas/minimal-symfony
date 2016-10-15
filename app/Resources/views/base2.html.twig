@@ -2,16 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Custom CMS Home Page{% endblock %}</title>
-        {% block stylesheets %}
+        <title>
+            {%- if block('title') -%}
+                Custom CMS Home Page | {{- block('title') -}}
+            {%- else -%}
+                Custom CMS Home Page
+            {%- endif -%}
+        </title>
+        {% block stylesheets -%}
             {% stylesheets filter='cssrewrite' filter='uglifycss'
               '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css'
               '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css'
-              '@CustomCMSBundle/Resources/public/css/custom.css'              
-            %}
+              '@CustomCMSBundle/Resources/public/css/custom.css'
+            -%}
             <link rel="stylesheet" href="{{ asset_url }}"/>
-            {% endstylesheets %}            
-        {% endblock %}
+            {% endstylesheets -%}
+        {% endblock -%}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -30,7 +36,7 @@
 
                     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
                         <a href="{{ path('logout') }}">Logout</a>
-                    {% endif %}                        
+                    {% endif %}
                 </div>
             </div>
             {% for flashMessage in app.session.flashbag.get('msg') %}
@@ -39,7 +45,7 @@
             {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
-            {% javascripts filter='uglifyjs2' output='js/compiled/main.js' 
+            {% javascripts filter='uglifyjs2' output='js/compiled/main.js'
                 '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
                 '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js'
             %}
