@@ -5,6 +5,7 @@ namespace Custom\CMSBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Security controller.
@@ -14,6 +15,8 @@ class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * @Template("CustomCMSBundle:security:login.html.twig")
+     *
      */
     public function loginAction(Request $request)
     {
@@ -25,13 +28,10 @@ class SecurityController extends Controller
 	    // last username entered by the user
 	    // $lastUsername = $authenticationUtils->getLastUsername();
 
-	    return $this->render(
-	        'security/login.html.twig',
-	        array(
-	            // last username entered by the user
-	            // 'last_username' => $lastUsername,
-	            'error'         => $error,
-	        )
-	    );    	
+	    return array(
+            // last username entered by the user
+            // 'last_username' => $lastUsername,
+            'error'         => $error,
+	    );
     }
 }
