@@ -12,7 +12,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -76,6 +76,6 @@ assetic:
     filters:
         cssrewrite: ~
         uglifycss:
-            bin: /usr/bin/uglifycss       
+            bin: /usr/bin/uglifycss
         uglifyjs2:
-            bin: /usr/bin/uglifyjs  
+            bin: /usr/bin/uglifyjs
