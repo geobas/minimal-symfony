@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Custom\CMSBundle\Entity\Category;
 use Custom\CMSBundle\Form\CategoryType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Category controller.
@@ -20,6 +21,8 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
+        // $this->enforceUserSecurity();
+
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('CustomCMSBundle:Category')->findAll();
@@ -124,5 +127,17 @@ class CategoryController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Security handled by controller
+     *
+     * @throws AccessDeniedException if user hasn't got ROLE_ADMIN
+     */
+    private function enforceUserSecurity()
+    {
+        $securityContext = $this->get('security.context');
+        if (!$securityContext->isGranted('ROLE_ADMIN'))
+            throw new AccessDeniedException("Need ROLE_ADMIN!");
     }
 }
