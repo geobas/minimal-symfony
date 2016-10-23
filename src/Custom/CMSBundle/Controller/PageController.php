@@ -5,6 +5,7 @@ namespace Custom\CMSBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Custom\CMSBundle\Entity\Page;
 use Custom\CMSBundle\Form\PageType;
@@ -43,6 +44,9 @@ class PageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // get logged in user
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $page->setOwner($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);
             $em->flush();
@@ -81,6 +85,8 @@ class PageController extends Controller
      */
     public function editAction(Request $request, Page $page)
     {
+        $this->enforceOwnerSecurity($page);
+
         $deleteForm = $this->createDeleteForm($page);
         $editForm = $this->createForm('Custom\CMSBundle\Form\PageType', $page);
         $editForm->handleRequest($request);
@@ -106,6 +112,8 @@ class PageController extends Controller
      */
     public function deleteAction(Request $request, Page $page)
     {
+        $this->enforceOwnerSecurity($page);
+
         $form = $this->createDeleteForm($page);
         $form->handleRequest($request);
 
@@ -132,5 +140,20 @@ class PageController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Checks if that page is owned to logged in user
+     *
+     * @param Page $page The Page entity
+     * @throws AccessDeniedException if user is not the owner of that page
+     */
+    public function enforceOwnerSecurity(Page $page)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        if ( $user != $page->getOwner() ) {
+            throw new AccessDeniedException("You do not own this!");
+        }
     }
 }

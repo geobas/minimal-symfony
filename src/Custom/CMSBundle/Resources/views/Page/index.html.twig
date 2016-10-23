@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Owner</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,14 +19,17 @@
                 <td><a href="{{ path('cms_page_show', { 'id': page.id }) }}">{{ page.id }}</a></td>
                 <td>{{ page.title }}</td>
                 <td>{{ page.content }}</td>
+                <td>{{ page.owner }}</td>
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('cms_page_show', { 'id': page.id }) }}">show</a>
                         </li>
+                        {# {% if app.user == page.owner %} #}
                         <li>
                             <a href="{{ path('cms_page_edit', { 'id': page.id }) }}">edit</a>
                         </li>
+                        {# {% endif %} #}
                     </ul>
                 </td>
             </tr>

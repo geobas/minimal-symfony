@@ -44,6 +44,14 @@ class Page
     private $category;
 
     /**
+     * @var user
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="pages")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $owner;
+
+    /**
      * Get id
      *
      * @return int
@@ -123,5 +131,29 @@ class Page
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \Custom\CMSBundle\Entity\User $owner
+     *
+     * @return Page
+     */
+    public function setOwner(\Custom\CMSBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \Custom\CMSBundle\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

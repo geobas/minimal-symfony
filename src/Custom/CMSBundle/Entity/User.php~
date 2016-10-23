@@ -40,7 +40,7 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Page", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="Page", mappedBy="user")
      */
     private $pages;
 
@@ -137,48 +137,5 @@ class User implements UserInterface
     {
 
     }
-
-    /**
-     * Add page
-     *
-     * @param \Custom\CMSBundle\Entity\Page $page
-     *
-     * @return User
-     */
-    public function addPage(\Custom\CMSBundle\Entity\Page $page)
-    {
-        $this->pages[] = $page;
-
-        return $this;
-    }
-
-    /**
-     * Remove page
-     *
-     * @param \Custom\CMSBundle\Entity\Page $page
-     */
-    public function removePage(\Custom\CMSBundle\Entity\Page $page)
-    {
-        $this->pages->removeElement($page);
-    }
-
-    /**
-     * Get pages
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPages()
-    {
-        return $this->pages;
-    }
-
-    /**
-     * Implementation of __toString()
-     *
-     * @return string username
-     */
-    public function __toString()
-    {
-        return $this->username;
-    }
 }
+
