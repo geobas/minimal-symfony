@@ -2,4 +2,6 @@
 
 {% block body %}
     <p>Custom 404 error...</p>
+
+    {{ render(controller('CustomCMSBundle:Page:_latestPages', { 'max': 3 })) }}
 {% endblock %}

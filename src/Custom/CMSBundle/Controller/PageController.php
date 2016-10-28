@@ -156,4 +156,19 @@ class PageController extends Controller
             throw new AccessDeniedException("You do not own this!");
         }
     }
+
+    /**
+     * Renders a partial view with latest pages.
+     *
+     */
+    public function _latestPagesAction($max = 3)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $pages = $em->getRepository('CustomCMSBundle:Page')->getLatestPages($max);
+
+        return $this->render('CustomCMSBundle:Page:_latestPages.html.twig', array(
+            'pages' => $pages,
+        ));
+    }
 }

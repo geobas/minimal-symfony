@@ -1,0 +1,5 @@
+{% for page in pages %}
+    <p>
+        <a href="{{ path('cms_page_show', { 'id': page.id }) }}">{{ page.title }}</a>
+    </p>
+{% endfor %}

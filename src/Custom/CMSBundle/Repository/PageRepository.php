@@ -10,4 +10,18 @@ namespace Custom\CMSBundle\Repository;
  */
 class PageRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+	 * Get last pages created
+	 *
+	 * @param  integer $max number of pages to return
+	 * @return Page
+	 */
+	public function getLatestPages($max = 3)
+	{
+		return $this->createQueryBuilder('p')
+					->addOrderBy('p.id', 'DESC')
+				    ->setMaxResults( $max )
+			        ->getQuery()
+			        ->execute();
+	}
 }
