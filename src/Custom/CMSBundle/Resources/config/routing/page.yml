@@ -22,3 +22,8 @@ cms_page_delete:
     path:     /{id}/delete
     defaults: { _controller: "CustomCMSBundle:Page:delete" }
     methods:  DELETE
+
+cms_page_srv:
+    path:     /my/srvc
+    defaults: { _controller: "CustomCMSBundle:Page:srvc" }
+    methods:  GET

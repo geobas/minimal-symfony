@@ -79,3 +79,10 @@ assetic:
             bin: /usr/bin/uglifycss
         uglifyjs2:
             bin: /usr/bin/uglifyjs
+
+# StofDoctrineExtensionsBundle Configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: false
+            timestampable: true

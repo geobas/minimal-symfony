@@ -2,6 +2,7 @@
 
 namespace Custom\CMSBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +51,18 @@ class Page
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $owner;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * Get id
@@ -155,5 +168,33 @@ class Page
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Implementation of __toString()
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return 'Title: ' . $this->title .
+               '<br> Content: ' . $this->content .
+               '<br> Updated at: ' . $this->updatedAt->format('Y-m-d H:i:s');
     }
 }

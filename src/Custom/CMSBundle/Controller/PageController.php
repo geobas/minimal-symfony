@@ -10,6 +10,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Custom\CMSBundle\Entity\Page;
 use Custom\CMSBundle\Form\PageType;
 
+use Custom\CMSBundle\MyService\PagesSrv;
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Page controller.
  *
@@ -170,5 +173,18 @@ class PageController extends Controller
         return $this->render('CustomCMSBundle:Page:_latestPages.html.twig', array(
             'pages' => $pages,
         ));
+    }
+
+    /**
+     * Testing page_srvc custom service
+     *
+     * @return Page a single page object
+     */
+    public function srvcAction()
+    {
+        $pageSrv = $this->container->get('page_srvc'); // or $this->get('page_srvc');
+        $response = new Response($pageSrv->fetchOnePage());
+
+        return $response;
     }
 }
