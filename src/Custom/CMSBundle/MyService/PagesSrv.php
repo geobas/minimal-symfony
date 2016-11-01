@@ -17,9 +17,9 @@ class PagesSrv
     }
 
     /**
-     * Get all pages
+     * Get one page
      *
-     * @return Page[]
+     * @return Page
      */
 	public function fetchOnePage()
 	{

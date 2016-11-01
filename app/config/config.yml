@@ -23,6 +23,9 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
+        assets_version: doragon_boru_zetto
+        assets_version_format: "%%s?v=%%s"
+        # assets_base_url: http://localhost.com
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~

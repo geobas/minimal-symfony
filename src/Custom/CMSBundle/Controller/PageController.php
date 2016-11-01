@@ -185,6 +185,8 @@ class PageController extends Controller
         $pageSrv = $this->container->get('page_srvc'); // or $this->get('page_srvc');
         $response = new Response($pageSrv->fetchOnePage());
 
+        // dump($pageSrv->fetchOnePage()->getCategory()->getpages()[1]->getCategory()->getName());
+
         return $response;
     }
 }
