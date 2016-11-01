@@ -10,7 +10,7 @@
             {%- endif -%}
         </title>
         {% block stylesheets -%}
-            {% stylesheets filter='cssrewrite' filter='uglifycss'
+            {% stylesheets filter='cssrewrite' filter='?uglifycss' output='css/styles.css'
               '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css'
               '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap-theme.css'
               '@CustomCMSBundle/Resources/public/css/custom.css'
