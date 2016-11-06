@@ -1,0 +1,63 @@
+{% use 'form_div_layout.html.twig' with choice_widget_collapsed as my_choice %}
+{% use 'form_div_layout.html.twig' with textarea_widget as my_textarea %}
+
+{%- block form_row -%}
+    <div class="form-group {{ errors | length > 0 ? 'has-error' : '' }}" style="margin-bottom:10px;">
+        {{- form_label(form) -}}&nbsp;:
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+        {% if help is defined and help %}
+			<div class="help-block" style="width:304px; text-align:center; color:#737373;">
+				Info : {{ help }}
+			</div>
+        {% endif %}
+    </div>
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label style="width:70px;" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</label>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    &nbsp;&nbsp;&nbsp;<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{%- block textarea_widget -%}
+    &nbsp;&nbsp;
+    {{ block('my_textarea') }}
+{%- endblock textarea_widget -%}
+
+{%- block choice_widget_collapsed -%}
+	&nbsp;&nbsp;
+    {{ block('my_choice') }}
+{%- endblock choice_widget_collapsed -%}
+
+{%- block form_errors -%}
+	{# {{ dump(_context) }} #}
+    {%- if errors|length > 0 -%}
+    <ul style="width:200px; float:right; position:relative; left:-180px;">
+        {%- for error in errors -%}
+            <li>{{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
