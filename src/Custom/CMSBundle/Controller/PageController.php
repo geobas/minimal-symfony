@@ -27,6 +27,9 @@ class PageController extends Controller
      */
     public function indexAction()
     {
+        // dump($this->container->getParameter('database_name'));
+        // exit('testing parameters');
+
         $em = $this->getDoctrine()->getManager();
 
         $pages = $em->getRepository('CustomCMSBundle:Page')->findAll();
