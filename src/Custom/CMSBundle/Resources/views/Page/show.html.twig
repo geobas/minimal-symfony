@@ -23,6 +23,10 @@
                 <th>Content</th>
                 <td>{{ page.content }}</td>
             </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ page.updatedAt | ago }}</td>
+            </tr>
         </tbody>
     </table>
 

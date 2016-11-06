@@ -7,3 +7,9 @@ services:
   page_srvc:
     class: Custom\CMSBundle\MyService\PagesSrv
     arguments: ["@doctrine.orm.entity_manager"]
+
+  ago.twig.filter_extension:
+    class: Custom\CMSBundle\Twig\MyFilterExtension
+    arguments: []
+    tags:
+      - { name: twig.extension }
